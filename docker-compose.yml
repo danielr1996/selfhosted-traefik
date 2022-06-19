@@ -16,11 +16,15 @@ services:
     env_file:
       - .env
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.dashboard.rule=Host(`traefik.app.danielr1996.de`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
-      - "traefik.http.routers.dashboard.service=api@internal"
-      - "traefik.http.routers.dashboard.tls.certresolver=letsencrypt"
-      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+      traefik.enable: true
+      traefik.http.routers.dashboard.rule: Host(`traefik.app.danielr1996.de`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
+      traefik.http.routers.dashboard.service: api@internal
+      traefik.http.routers.dashboard.tls.certresolver: letsencrypt
+      traefik.http.services.traefik.loadbalancer.server.port: 8080"
+      de.danielr1996.bashdoard.name: Traefik
+      de.danielr1996.bashdoard.url: https://traefik.app.danielr1996.de/dashboard/
+      de.danielr1996.bashdoard.icon: statics/app-logo-128x128.png
+      de.danielr1996.bashdoard.id: traefik
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - certs:/data
