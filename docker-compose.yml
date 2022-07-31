@@ -2,6 +2,7 @@ services:
   reverse-proxy:
     image: traefik:v2.7
     network_mode: host
+    restart: unless-stopped
     command: |
       "--api.dashboard=true"
       "--providers.docker"
